@@ -1,0 +1,28 @@
+:root {
+    font-family: $font-family-base;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+    box-sizing: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: $color-text-link;
+}
+
+h1, h2, h3, h4 {
+    margin:  0;
+}
+body {
+    margin: 0;
+    padding: 0;
+    background-image: $color-background-body;
+    min-height: $min-height;
+    background-repeat: no-repeat;
+}

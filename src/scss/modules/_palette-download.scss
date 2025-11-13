@@ -1,0 +1,49 @@
+.palette-download {
+    position: relative;
+    @include flex-center-column;
+    align-items: stretch;
+    gap: $gap-base;
+    width: $palette-download-size-w;
+    margin: $margin-center;
+    padding: $padding-box;
+    border-radius: $border-radius-base;
+    background-color: $color-background-download;
+    background-image: $color-background-download;
+    box-shadow: $box-shadow-palette-download;
+    @include uspoader-state;
+    overflow: hidden;
+
+    &.drag-over {
+        box-shadow: $box-shadow-drag-over;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    &__title {
+        font-weight: $font-weight-base;
+        color: $color-text-placeholder;
+        text-align: center;
+        font-size: $font-size-base;
+        margin: 0;
+    }
+
+    &__label {
+        display: block;
+        border-radius: $border-radius-base;
+        padding: $padding-button;
+        cursor: pointer;
+        color: lighten($color-text-placeholder, 30%);
+        text-align: center;
+    }
+
+    &__input {
+        display: none;
+    }
+}

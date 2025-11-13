@@ -1,0 +1,106 @@
+.app-layout {
+    max-width: $max-width;
+    margin: $margin-layout;
+
+    @include media(xl) {
+        max-width: $max-width-desktop;
+        margin-left: calc($sandbox-panel-width-desktop + $gap-base);
+        margin-right: $gap-base;
+    }
+
+
+    &__title {
+        margin: 0;
+        text-align: center;
+        font-family: $font-family-title-primary;
+        color: $color-text-title;
+        font-weight: $font-weight-light;
+        font-size: $font-size-title-primary;
+
+        @include media(sm) {
+            align-items: center
+        }
+
+        @include media(xl) {
+            font-size: $font-size-xxl;
+            text-align: left;
+        }
+
+    }
+
+    &__wrapper {
+        @include flex-center-column;
+        flex-wrap: wrap;
+        gap: calc($gap-base * 2);
+        align-items: center;
+
+        @include media(xl) {
+            flex-direction: row;
+        }
+
+    }
+
+    &__panel {
+        position: relative;
+        @extend %base-layout-style;
+
+        @include media(md) {
+            width: 100%;
+        }
+
+        @include media(xl) {
+            @include base-layout-style-desktop;
+        }
+
+        @include media(xl) {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: $sandbox-panel-width-desktop;
+            height: 100vh;
+            border-radius: 0;
+            overflow: auto;
+        }
+    }
+
+    &__sandbox {
+        @extend %base-layout-style;
+
+        @include media(md) {
+            @include base-layout-style-desktop;
+            flex: 1;
+            flex-shrink: 0;
+            min-width: 30rem;
+            max-width: 60rem;
+        }
+    }
+}
+
+.uploader-container {
+    display: grid;
+    min-height: $uploader-container-height;
+
+    @include media(md) {
+        max-width: calc(50% - 1rem);
+    }
+
+    @include media(xl) {
+        max-width: none;
+    }
+}
+
+.regeneration-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: $gap-base;
+    margin-top: 1rem;
+
+    @include media(lg) {
+        @include app-action-lg;
+    }
+
+    @include media(lg) {
+        @include app-action-xl;
+    }
+}

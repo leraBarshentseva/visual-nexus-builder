@@ -1,0 +1,93 @@
+.sandbox-title {
+    @extend %title-secondary;
+}
+
+.sandbox-preview {
+    &__header {
+        position: relative;
+        min-height: $sandbox-header-height;
+        border: 1px dashed $color-border-dashed;
+        border-bottom: 0;
+    }
+
+    &__wrapper {
+        padding: $padding-base;
+        @include flex-center-column;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    &__nav {
+        position: relative;
+        display: flex;
+        gap: $gap-base;
+
+        &--primary {
+            display: inline-block;
+            position: relative;
+            border: 1px dashed $color-border-dashed;
+        }
+
+        &--secondary {
+            display: inline-block;
+            position: relative;
+            border: 1px dashed $color-border-dashed;
+        }
+    }
+
+    &__logo {
+        width: $sandbox-logo-width;
+        height: $sandbox-logo-height;
+        border: 1px dashed $color-border-dashed;
+    }
+
+    &__content {
+        position: relative;
+        min-height: $sandbox-content-height;
+        padding: $padding-base;
+        border: 1px dashed $color-border-dashed;
+
+    }
+
+    &__title {
+        position: relative;
+        display: inline-block;
+        line-height: $line-height-max;
+    }
+
+    &__box {
+        position: relative;
+        border: 1px dashed $color-border-dashed;
+        padding: $padding-base;
+        border-radius: $border-radius-small;
+        width: $sandbox-box-width;
+        margin: $margin-center;
+        margin-top: $margin-big;
+        margin-bottom: $margin-big;
+    }
+
+    &__text {
+        position: relative;
+        line-height: $line-height-text;
+        margin: $margin-box;
+        margin-bottom: $margin-big;
+        padding-top: $padding-base;
+        border: 1px dashed $color-border-dashed;
+    }
+
+    &__button {
+        position: relative;
+        display: block;
+        border-radius: $border-radius-base;
+        height: $sandbox-button-height;
+        width: $sandbox-button-width;
+        background: transparent;
+        border: 1px dashed $color-border-dashed;
+
+        &--outside {
+            width: $sandbox-button-width--outside;
+            margin-left: auto;
+            border-radius: $border-radius-small;
+        }
+    }
+}

@@ -1,0 +1,62 @@
+@mixin uspoader-state {
+    grid-area: 1 / 1 / 2 / 2;
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out, visibility 0.3s;
+    opacity: 0;
+    transform: scale(0.95) translateY(10px);
+    visibility: hidden;
+}
+
+@mixin flex-center-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin base-layout-style-desktop {
+    padding: $padding-big;
+    flex-basis: $flex-basis-layout;
+}
+
+@mixin app-action-lg {
+    max-width: calc(50% - 1rem);
+    margin-left: auto;
+}
+
+@mixin app-action-xl {
+    max-width: none;
+    margin-left: none;
+}
+
+@mixin media($breakpoint) {
+
+    @if $breakpoint ==sm {
+        @media (min-width: $breakpoint-sm) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==md {
+        @media (min-width: $breakpoint-md) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==lg {
+        @media (min-width: $breakpoint-lg) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==xl {
+        @media (min-width: $breakpoint-xl) {
+            @content;
+        }
+    }
+
+    @if $breakpoint ==xll {
+        @media (min-width: $breakpoint-xll) {
+            @content;
+        }
+    }
+}

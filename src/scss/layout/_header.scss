@@ -1,0 +1,65 @@
+.header {
+    &__wrapper {
+        @include flex-center-column;
+        flex-direction: row;
+        justify-content: space-between;
+
+        max-width: $max-width;
+        margin: $margin-center;
+        padding: $padding-header;
+
+        @include media(xl) {
+            max-width: $max-width-desktop;
+            margin-left: $sandbox-panel-width-desktop;
+            padding: $padding-base;
+        }
+    }
+
+    &__logo {
+        width: calc($logo-width * 2);
+        @include flex-center-column;
+
+        @include media(md) {
+            width: calc($logo-width * 4);
+        }
+    }
+
+    &__link {
+        font-size: $font-size-link;
+        color: $color-text-link-header;
+        text-decoration: underline;
+    }
+
+    &__logo-figure {
+        margin: 0;
+        padding: 0;
+        width: $logo-width;
+        height: $logo-height;
+
+        @include media(md) {
+            width: calc($logo-width * 2);
+            height: calc($logo-height * 2);
+        }
+    }
+
+    &__logo-caption {
+        font-size: $font-size-logo-caption;
+        text-transform: uppercase;
+        font-family: $font-family-secondary;
+
+        @include media(md) {
+            font-size: $font-size-base;
+        }
+
+        .gradient-color {
+            background: $gradient-logo-text;
+            background-clip: text;
+            color: transparent;
+        }
+    }
+
+    &__img {
+        max-width: 100%;
+        object-fit: contain;
+    }
+}

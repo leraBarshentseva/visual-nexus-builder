@@ -1,0 +1,44 @@
+.button {
+    display: block;
+    border: none;
+    padding: $padding-button;
+    border-radius: $border-radius-small;
+    margin: $margin-button;
+    outline: none;
+    cursor: pointer;
+    font-size: $font-size-button;
+    height: $button-height;
+    color: $color-text-secondary;
+
+    &__loader {
+        display: none;
+    }
+
+    &--primary {
+        background-image: $color-background-button-primary;
+        color: $color-text-on-brand;
+        text-shadow: $text-shadow-on-brand;
+        box-shadow: $box-shadow-button;
+    }
+
+    &--secondary {
+        border: 1px solid $color-border-interactive;
+        background: transparent;
+        width: 100%;
+
+        &:hover {
+            background-color: $color-background-interactive;
+            color: $color-text-on-brand;
+        }
+    }
+
+    &--danger {
+        border-color: $color-action-danger;
+        color: $color-action-danger;
+
+        &:hover {
+            background-color: $color-action-danger;
+            color: $color-text-on-brand;
+        }
+    }
+}

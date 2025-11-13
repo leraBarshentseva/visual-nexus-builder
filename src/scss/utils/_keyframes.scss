@@ -1,0 +1,39 @@
+@keyframes pulse-border {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 222, 125, 0.7);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(255, 222, 125, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 222, 125, 0);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+}
+
+@keyframes color-change {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.8);
+        opacity: 0.7;
+    }
+}

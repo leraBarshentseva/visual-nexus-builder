@@ -1,0 +1,46 @@
+.palette-preview {
+    @include uspoader-state;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: $gap-base;
+    padding-bottom: $padding-base;
+
+    &__title {
+        margin: 0;
+        @extend %title-secondary;
+    }
+
+    &__button-wrapper {
+        @include flex-center-column;
+    }
+
+    &__body {
+        flex: 1;
+    }
+
+    &__image-box {
+        @include flex-center-column;
+        width: 100%;
+        max-width: $img-mw;
+
+        @include media(md) {
+            max-width: $img-mw-desktop;
+            max-height: $img-mh-desktop;
+        }
+    }
+
+    &__image-wrapper {
+        border: 1px solid $color-border-interactive;
+        border-radius: $border-radius-small;
+        overflow: hidden;
+    }
+
+    &__image {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+}

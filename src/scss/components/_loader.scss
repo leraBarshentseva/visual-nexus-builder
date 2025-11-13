@@ -1,0 +1,46 @@
+.color-loader {
+    @include flex-center-column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    flex-direction: row;
+    gap: $gap-loader;
+    background-color: $color-background-overlay;
+    z-index: $loader-index;
+    color: $color-text-secondary;
+    visibility: hidden;
+
+    &.is-visibled {
+        visibility: visible;
+    }
+
+    &__square {
+        width: $loader-square-width;
+        height: $loader-square-height;
+        border-radius: $border-radius-small;
+
+        animation: color-change 2s infinite;
+
+        &:nth-child(1) {
+            animation-delay: 0s;
+            background-color: $color-background-overlay-square-1;
+        }
+
+        &:nth-child(2) {
+            animation-delay: .2s;
+            background-color: $color-background-overlay-square-2;
+        }
+
+        &:nth-child(3) {
+            animation-delay: .3s;
+            background-color: $color-background-overlay-square-3;
+        }
+
+        &:nth-child(4) {
+            animation-delay: .4s;
+            background-color: $color-background-overlay-square-4;
+        }
+    }
+}

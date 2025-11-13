@@ -1,0 +1,152 @@
+.palette-colors {
+    position: relative;
+    display: grid;
+    grid-template-columns: $grid-column-base;
+    gap: $gap-base;
+    width: 100%;
+    border-bottom: 1px dashed $color-border-separator;
+    padding-bottom: $padding-big;
+
+    @include media(md) {
+        grid-template-columns: $grid-column-md;
+    }
+
+    @include media(lg) {
+        grid-template-columns: $grid-column-lg;
+    }
+
+    @include media(xl) {
+        grid-template-columns: $grid-column-xl;
+    }
+
+    &__item {
+        position: relative;
+        cursor: grab;
+        @include flex-center-column;
+        border-radius: $border-radius-small;
+        text-align: center;
+        font-size: $font-size-normal;
+        min-height: $palette-item-height;
+        user-select: none;
+        border: 2px dashed transparent;
+        transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
+        padding: $padding-palette-item;
+
+        &.drag-hide {
+            position: absolute !important;
+            pointer-events: none;
+            z-index: -1;
+            top: -9999px !important;
+            left: -9999px !important;
+            opacity: 0 !important;
+            transform: scale(0.9);
+        }
+
+        &.is-empty {
+            background-color: $color-background-item-empty;
+            border: 2px dashed $color-border-decorative;
+
+            .palette-colors__lock,
+            .palette-colors__hex,
+            .palette-colors__base-label {
+                display: none;
+            }
+
+            &:hover {
+                box-shadow: none;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        &.is-loading {
+            background-color: $color-border-decorative;
+            animation: pulse 1.5s infinite;
+
+            .palette-colors__lock,
+            .palette-colors__hex,
+            .palette-colors__base-label {
+                display: none;
+            }
+        }
+
+        &:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: $box-shadow-item;
+        }
+
+
+        &--dragging {
+            cursor: grabbing;
+            opacity: 0.5;
+        }
+
+        &--base {
+            border: 2px solid $color-border-highlight;
+            box-shadow: $box-shadow-item--base;
+            animation: pulse-border 2s infinite;
+
+            .palette-colors__base-label {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__lock {
+        position: absolute;
+        top: 0.3rem;
+        right: 0.3rem;
+        width: 0.9rem;
+        height: .9rem;
+        cursor: pointer;
+
+        --lock-color: #000;
+        background-color: var(--lock-color);
+        -webkit-mask-size: contain;
+        mask-size: contain;
+        -webkit-mask-repeat: no-repeat;
+        mask-repeat: no-repeat;
+        -webkit-mask-position: center;
+        mask-position: center;
+
+        -webkit-mask-image: url($lock);
+        mask-image: url($lock);
+
+        &--locked {
+            -webkit-mask-image: url($lock--locked);
+            mask-image: url($lock--locked);
+        }
+    }
+
+    &__base-label {
+        position: absolute;
+        left: 0;
+        top: 0;
+        font-size: $font-size-smal;
+        background-color: $color-background-interactive;
+        padding: $padding-base-label;
+        border-top-left-radius: $border-radius-small;
+        color: $color-text-on-brand;
+        opacity: 0;
+    }
+}
+
+.utility-colors {
+    display: grid;
+    grid-template-columns: $grid-column-base;
+    gap: $gap-base;
+    padding-top: $padding-big;
+
+    @include media(md) {
+        grid-template-columns: $grid-column-md;
+    }
+
+    @include media(xl) {
+        grid-template-columns: $grid-column-xl;
+    }
+}
+
+.palette-colors__item--utility {
+    .palette-colors__lock {
+        display: none;
+    }
+}

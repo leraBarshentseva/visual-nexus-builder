@@ -1,0 +1,224 @@
+$lock: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5V6.75a4.5 4.5 0 1 1 9 0v3.75M3.75 21.75h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H3.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>';
+$lock--locked: 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z"/></svg>';
+
+$breakpoint-sm: 35rem; // ~560px
+$breakpoint-md: 48rem; // ~768px
+$breakpoint-lg: 57.5rem; // ~920px
+$breakpoint-xl: 75rem; // ~1200px
+$breakpoint-xll: 87.5rem; // ~1400px
+
+//palette-colors
+$grid-column-base: repeat(2, 1fr);
+$grid-column-md: repeat(4, 1fr);
+$grid-column-lg: repeat(5, 1fr);
+$grid-column-xl: $grid-column-base;
+
+$col-start-main: 1;
+$col-end-main: -1;
+
+$space-xs: .25rem; // 4px
+$space-s: .5rem; // 8px
+$space-m: 1rem; // 16px
+$space-l: 1.5rem; // 24px
+$space-xl: 2rem; // 32px
+
+// Greys
+$color-white: #ffffff;
+$color-grey-100: #F8F8F8;
+$color-grey-200: #F1F1F1;
+$color-grey-500: #666666;
+$color-grey-800: #343a40;
+$color-black: #000000;
+
+// Brand Colors
+$color-lavender-500: #7e709b;
+
+$color-purple-100: #F6CFF3;
+$color-purple-200: #EEA3ED;
+$color-purple-300: #C76CCD;
+$color-purple-400: #903F9C;
+$color-purple-500: #4C135B;
+$color-purple-600: #3C0D4E;
+$color-purple-800: #2D0941;
+$color-blue-300: #200634;
+$color-pink-400: #17032B;
+
+// Feedback Colors
+$color-green-500: #28a745;
+$color-red-500: #dc3545;
+$color-cyan-500: #17a2b8;
+
+$color-transparent: transparent;
+// Accent Colors
+$color-yellow-300: #ffde7d;
+
+// Gradients (для сложных цветов)
+$gradient-logo: linear-gradient(45deg, #372d88, #ed76b4);
+$gradient-button-primary: linear-gradient(360deg, $color-lavender-500, #8598c5);
+$gradient-logo-text: linear-gradient(45deg, #372d88, #ed76b4);
+$gradient-block-download: linear-gradient(to bottom, #c6c6e5, #bbe9ef);
+
+//Semantic Color Tokens
+$color-action-primary: $color-purple-500;
+$color-action-danger: $color-red-500;
+
+//Text
+$color-text-primary: $color-black;
+$color-text-secondary: $color-grey-800;
+$color-text-on-brand: $color-white;
+$color-text-title: $color-purple-500;
+$color-text-link: $color-action-primary;
+$color-text-placeholder: #6262a4;
+
+//Backgrounds
+$color-background-body: linear-gradient(45deg, rgba($color-purple-500, 0.8), rgba(#68a5e2, 0.8));
+$color-background-panel: $color-white;
+$color-background-interactive: rgba($color-lavender-500, 0.9);
+$color-background-overlay: rgba($color-black, 0.62);
+$color-background-overlay-square-1: #6de5ea;
+$color-background-overlay-square-2: #f9d371;
+$color-background-overlay-square-3: #da2e9c;
+$color-background-overlay-square-4: #403292;
+$color-background-success: $color-green-500;
+$color-background-error: $color-red-500;
+$color-background-info: $color-cyan-500;
+$color-background-button-primary: $gradient-button-primary;
+$color-background-select: $color-white;
+$color-text-link-header: $color-grey-800;
+$color-background-item-empty: $color-transparent;
+$color-background-download: $gradient-block-download;
+
+// Borders
+$color-border-interactive: $color-lavender-500;
+$color-border-danger: $color-red-500;
+$color-border-highlight: $color-yellow-300;
+$color-border-decorative: $color-grey-200;
+$color-border-dashed: #d0d0d0;
+$color-border-sandbox: $color-grey-200;
+
+// Actions (для кликабельных элементов)
+$color-action-primary: $color-lavender-500;
+$color-action-danger: $color-red-500;
+
+$color-border-separator: rgba($color-lavender-500, 0.5);
+
+$max-width: 95vw;
+$max-width-desktop: 92rem;
+$min-height: 100vh;
+$window-height: 100vh;
+
+//Позиционирование
+$loader-index: 10;
+$export-panel-index: 100;
+$toast-index: 900;
+
+//Шрифты 
+$font-family-base: Arial, Helvetica, sans-serif;
+$font-family-secondary: "Roboto Condensed", sans-serif;
+$font-family-title-primary: "Carattere", cursive;
+
+//Размеры шрифта
+$font-size-base: $space-m;
+$font-size-normal: calc($font-size-base * .8);
+$font-size-smal: calc($font-size-base * .6);
+$font-size-title-primary: calc($font-size-base * 1.8);
+$font-size-xxl: $space-xl ;
+
+$font-size-button: $font-size-normal;
+$font-size-link: $font-size-smal;
+$font-size-logo-caption: $font-size-smal;
+
+$line-height-base: 1.4;
+$line-height-smal: 1.2;
+$line-height-max: 4;
+$line-height-text: 1.7;
+
+$font-weight-light: 300;
+$font-weight-base: 400;
+$font-weight-bold: 600;
+
+$letter-spacing-base: 0.05em;
+
+//Внешние отступы
+$margin-base: $space-m;
+$margin-big: $space-xl ;
+$margin-smal: $space-s;
+$margin-center: 0 auto;
+$margin-box: $space-m 0;
+$margin-layout: $space-m auto;
+$margin-button: .5em 0;
+
+//Внутренние отстумы
+$padding-base: $space-m;
+$padding-big: $space-xl ;
+$padding-smal: 0.3rem .8rem;
+$padding-main: 0 $space-m;
+$padding-header: $space-m 0;
+$padding-button: $space-s $space-m;
+$padding-box: $space-xl $space-m;
+$padding-layout-desktop: $space-xl 0;
+$padding-palette-item: $space-s $space-l $space-s $space-s;
+$padding-base-label: 0 .2rem;
+
+//Отстпы
+$gap-base: $space-m;
+$gap-smal: $space-s;
+$gap-loader: .625rem;
+
+//Скругления 
+$border-radius-base: $space-m;
+$border-radius-small: $space-s;
+
+//Размеры
+$logo-width: 3rem;
+$logo-height: 3rem;
+$flex-basis-layout: 25rem;
+$uploader-container-height: 9.5rem;
+$select-width: 100%;
+$select-height: 2.5rem;
+$button-height: 2.5rem;
+$toast-width: 95%;
+$toast-top: $space-s;
+$loader-square-width: 1.25rem;
+$loader-square-height: 1.25rem;
+$export-panel-height: 90vh;
+
+$img-mw: calc(50% - ($gap-base / 2));
+$img-mh: 8rem;
+$img-mw-desktop: 10rem;
+$img-mh-desktop: 10rem;
+
+$sandbox-panel-width-desktop: 25rem;
+
+$palette-download-size-h: 70%;
+$palette-download-size-w: 100%;
+$palette-item-height: 3rem;
+
+$sandbox-header-height: 7em;
+$sandbox-logo-width: 4rem;
+$sandbox-logo-height: 4rem;
+$sandbox-content-height: 25em;
+$sandbox-box-width: 95%;
+$sandbox-button-height: 3rem;
+$sandbox-button-width: 10rem;
+$sandbox-button-width--outside: 12rem;
+
+//Тени
+$text-shadow-on-brand: 0 0 0.1em rgba($color-black, 0.5);
+$box-shadow-layout: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
+$box-shadow-button: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0, 0, 0.07);
+$box-shadow-toast: 0 4px 12px rgba(0, 0, 0, 0.15);
+$box-shadow-badge: 0 1px 3px rgba(0, 0, 0, 0.15);
+$box-shadow-export-panel: 0 -5px 25px rgb(132 153 197);
+$box-shadow-palette-download: 0 .1em 2em #dbdbfa87;
+$box-shadow-item: 0 1px 2px rgba(0, 0, 0, 0.04),
+  0 2px 4px rgba(0, 0, 0, 0.04),
+  0 4px 8px rgba(0, 0, 0, 0.04),
+  0 8px 16px rgba(0, 0, 0, 0.04),
+  0 16px 32px rgba(0, 0, 0, 0.04);
+
+$box-shadow-item--base: 0 0 15px lighten($color-border-highlight, 80%);
+$box-shadow-drag-over: 0 .1em 3em $color-yellow-300;
+
+//Трансформации
+$toast-starting-point: translateY(-120%);

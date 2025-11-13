@@ -1,0 +1,30 @@
+.badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: $font-size-smal;
+    border-radius: $border-radius-small;
+    padding: $padding-smal;
+    font-weight: $font-weight-bold;
+    min-width: max-content;
+    text-align: center;
+    line-height: $line-height-smal;
+    color: $color-text-on-brand;
+    box-shadow: $box-shadow-badge;
+    transform: translate(0, 0);
+    visibility: hidden;
+
+    &--intersection {
+        transform: translate(-25%, -50%);
+        left: 0;
+        right: auto;
+    }
+
+    &--navigation {
+        transform: translate(7%, 125%);
+    }
+
+    &.is-visible {
+        visibility: visible;
+    }
+}

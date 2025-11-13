@@ -1,0 +1,20 @@
+%base-layout-style {
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: max-content;
+    justify-content: center;
+    align-content: flex-start;
+    gap: $gap-base;
+    grid-template-columns: 1fr;
+    border-radius: $border-radius-base;
+    padding: $padding-base;
+    background-color: $color-background-panel;
+    box-shadow: $box-shadow-layout;
+}
+
+%title-secondary {
+    color: $color-text-secondary;
+    text-transform: uppercase;
+    letter-spacing: $letter-spacing-base;
+    font-size: $font-size-normal;
+}

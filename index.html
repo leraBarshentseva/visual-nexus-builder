@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Palette-Pilot</title>
+  <link rel="icon" href="public/image/favicon-32x32.png" sizes="32x32" type="image/png">
+</head>
+
+<body>
+  <header class="header">
+    <div class="header__wrapper">
+      <div class="header__logo">
+        <figure class="header__logo-figure">
+          <picture class="header__picture">
+            <source type="image/webp" srcSet="/public/image/LogoVNB25.webp" alt="Логотип VNB" class="header__img" />
+            <img src="/public/image/LogoVNB25.png" width="96" alt="Логотип VNB" class="header__img" />
+          </picture>
+        </figure>
+        <figcaption class="header__logo-caption">visual <span class="gradient-color">nexus</span> builder</figcaption>
+      </div>
+      <div class="header__about-project">
+        <button class="button button--secondary" id="share-btn">Share link</button>
+        <a href="" class="header__link">GitHub [about the project]</a>
+      </div>
+    </div>
+  </header>
+  <main class="app-layout">
+    <div class="app-layout__wrapper">
+      <aside class="app-layout__panel">
+        <div class="palette-download__loader color-loader">
+          <div class="color-loader__square"></div>
+          <div class="color-loader__square"></div>
+          <div class="color-loader__square"></div>
+          <div class="color-loader__square"></div>
+        </div>
+        <h1 class="app-layout__title">Color generator from pictures</h1>
+        <section class="uploader-container" id="uploader-container">
+          <article class="palette-download is-active" id="palette-download">
+            <h2 class="palette-download__title">Click or drag the image here</h2>
+            <form id="download-file" class="palette-download__form">
+              <label for="image-loader-input" class="palette-download__label">
+                <svg xmlns="http://www.w3.org/2000/svg" width='32' fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                  stroke="currentColor" class="size-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5M16.5 12 12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                </svg>
+              </label>
+              <input type="file" id="image-loader-input" class="palette-download__input" name="image-file"
+                accept="image/*" />
+            </form>
+          </article>
+          <article class="palette-preview" id="palette-preview">
+            <div class="palette-preview__image-box">
+              <div class="palette-preview__image-wrapper"></div>
+
+            </div>
+            <div class="palette-preview__body">
+              <h3 class="palette-preview__title">Selected image</h3>
+              <div class="palette-preview__button-wrapper">
+                <button class="button button--secondary button--danger" id="reset-state-btn">Reset all</button>
+                <button class="button button--secondary" id="replace-image-btn">Replace image</button>
+              </div>
+            </div>
+          </article>
+        </section>
+
+        <section class="palette-container">
+          <div class="format-switcher" id="format-switcher">
+            <div class="format-switcher__item">
+              <input type="radio" id="format-hex" name="color-format" value="HEX" checked>
+              <label for="format-hex">HEX</label>
+            </div>
+            <div class="format-switcher__item">
+              <input type="radio" id="format-rgb" name="color-format" value="RGB">
+              <label for="format-rgb">RGB</label>
+            </div>
+            <div class="format-switcher__item">
+              <input type="radio" id="format-hsl" name="color-format" value="HSL">
+              <label for="format-hsl">HSL</label>
+            </div>
+          </div>
+          <section class="palette-colors" id="palette-colors">
+          </section>
+          <section class="utility-colors" id="utility-colors-container">
+          </section>
+          <section class="regeneration-controls">
+            <div class="custom-select-wrapper">
+              <select class="button" id="generation-mode-select">
+                <option value="analogic" selected>Analogic</option>
+                <option value="monochrome">Monochrome</option>
+                <option value="monochrome-dark">Monochrome-dark</option>
+                <option value="monochrome-light">Monochrome-light</option>
+                <option value="complement">Complement</option>
+                <option value="triad">Triad</option>
+                <option value="quad">Quad</option>
+              </select>
+            </div>
+            <button id="regenerate-btn" class="button button--primary">Regenerate unfixed</button>
+          </section>
+          <button id="export-css-btn" class="button button--secondary">Export to CSS</button>
+        </section>
+      </aside>
+
+      <section class="app-layout__sandbox" id="contrast-sandbox">
+        <h2 class="sandbox-title">Interactive sandbox</h2>
+        <div class="sandbox-preview">
+          <header class="sandbox-preview__header drop-target" data-target-prop="headerBackground">
+            <div class="sandbox-preview__wrapper">
+              <div class="sandbox-preview__logo"></div>
+              <nav class="sandbox-preview__nav">
+                <a href="#" class="drop-target sandbox-preview__nav--primary" data-target-prop="linkColorPrime">Home
+                  <span id="headerANDlinkPrimary" class="badge badge--navigation"></span></a>
+                <a href="#" class="drop-target sandbox-preview__nav--secondary" data-target-prop="linkColor">About
+                  <span id="headerANDlinkSecondary" class="badge badge--navigation"></span>
+                </a>
+              </nav>
+            </div>
+          </header>
+          <div class="sandbox-preview__content drop-target" data-target-prop="pageBackground">
+            <h1 class="drop-target sandbox-preview__title" data-target-prop="headingColor">This is your title<span
+                id="titleANDpage" class="badge"></span></h1>
+
+            <div class="drop-target sandbox-preview__box" data-target-prop="boxBackground">
+              <span id="boxANDpage" class="badge badge--intersection"></span>
+
+              <p class="drop-target sandbox-preview__text" data-target-prop="textColor">
+                <span id="boxANDtext" class="badge"></span>
+                Drag a color from the palette onto any element to see it in action. This text, heading, buttons, and
+                background are interactive zones.
+              </p>
+              <button class="sandbox-preview__button sandbox-preview__button--inside drop-target"
+                data-target-prop="buttonInsideBackground">
+                <span id="buttonANDTextButton" class="badge"></span>
+                <span id="buttonANDBox" class="badge badge--intersection"></span>
+                <span class="drop-target" data-target-prop="buttonInsideTextColor">Interactive button</span>
+              </button>
+            </div>
+            <button class="sandbox-preview__button sandbox-preview__button--outside drop-target"
+              data-target-prop="buttonOutsideBackground">
+              <span id="buttonOutsideANDTexButtonOutside" class="badge"></span>
+              <span id="buttonOutsideANDPage" class="badge badge--intersection"></span>
+              <span class="drop-target" data-target-prop="buttonOutsideTextColor">Interactive button</span>
+            </button>
+          </div>
+      </section>
+    </div>
+    <div class="toast-container" id="toast-container"></div>
+
+    <div class="export-panel" id="export-panel">
+      <div class="export-panel__header">
+        <h3 class="export-panel__title">CSS Variables</h3>
+        <button class="export-panel__close-btn" id="export-panel-close-btn">&times;</button>
+      </div>
+      <div class="export-panel__body">
+        <p>Copy this code into your CSS file.</p>
+        <div class="export-panel__code-wrapper">
+          <pre><code id="export-code-content"></code></pre>
+        </div>
+        <button class="export-panel__copy-btn button button--secondary" id="export-panel-copy-btn">Copy</button>
+        <button class="export-panel__download-btn button button--secondary" id="export-panel-download-btn">Download
+          .css</button>
+      </div>
+    </div>
+    <!-- Оверлей для затемнения фона -->
+    <div class="overlay" id="overlay"></div>
+
+  </main>
+
+  <script type="module" defer>
+    import ColorThief from 'https://cdn.jsdelivr.net/npm/colorthief@2/dist/color-thief.mjs';
+    window.ColorThief = ColorThief;
+  </script>
+  <script type="module" src="/src/main.js" defer></script>
+</body>
+
+</html>
