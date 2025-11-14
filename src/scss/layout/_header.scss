@@ -10,7 +10,7 @@
 
         @include media(xl) {
             max-width: $max-width-desktop;
-            margin-left: $sandbox-panel-width-desktop;
+            margin-left: $app-panel-width-desktop;
             padding: $padding-base;
         }
     }

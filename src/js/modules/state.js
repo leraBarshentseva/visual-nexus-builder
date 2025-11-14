@@ -1,12 +1,12 @@
 //palette-pilot\src\js\modules\state.js
-// Объект сотояний
+
 export let state = {
-    palette: [], // Сгенерированная палитра (массив массивов [r, g, b])
-    lockedColors: [], // "Замороженные" цвета (массив массивов [r, g, b])
+    palette: [], // Generated palette (array of arrays [r, g, b])
+    lockedColors: [], // "Frozen colors" (array of arrays [r, g, b])
     baseColor: null,
     previewImage: null,
     displayFormat: 'HEX',
-    loadingColorIndexes: [], // Массив индексов, которые сейчас грузятся
+    loadingColorIndexes: [], //An array of indexes that are currently being loaded
     utilityColors: [
         [0, 0, 0],
         [248, 249, 250],

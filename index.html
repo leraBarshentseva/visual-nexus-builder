@@ -22,7 +22,8 @@
       </div>
       <div class="header__about-project">
         <button class="button button--secondary" id="share-btn">Share link</button>
-        <a href="https://github.com/leraBarshentseva/visual-nexus-builder" class="header__link" target="_blank">GitHub [about the project]</a>
+        <a href="https://github.com/leraBarshentseva/visual-nexus-builder" class="header__link" target="_blank">GitHub
+          [about the project]</a>
       </div>
     </div>
   </header>
@@ -65,7 +66,6 @@
             </div>
           </article>
         </section>
-
         <section class="palette-container">
           <div class="format-switcher" id="format-switcher">
             <div class="format-switcher__item">
@@ -102,9 +102,11 @@
           <button id="export-css-btn" class="button button--secondary">Export to CSS</button>
         </section>
       </aside>
-
       <section class="app-layout__sandbox" id="contrast-sandbox">
-        <h2 class="sandbox-title">Interactive sandbox</h2>
+        <div class="sandbox__header">
+          <h2 class="sandbox-title">Interactive sandbox</h2>
+          <button class="button button--secondary button--small" id="reset-sandbox-btn">Reset</button>
+        </div>
         <div class="sandbox-preview">
           <header class="sandbox-preview__header drop-target" data-target-prop="headerBackground">
             <div class="sandbox-preview__wrapper">
@@ -121,10 +123,8 @@
           <div class="sandbox-preview__content drop-target" data-target-prop="pageBackground">
             <h1 class="drop-target sandbox-preview__title" data-target-prop="headingColor">This is your title<span
                 id="titleANDpage" class="badge"></span></h1>
-
             <div class="drop-target sandbox-preview__box" data-target-prop="boxBackground">
               <span id="boxANDpage" class="badge badge--intersection"></span>
-
               <p class="drop-target sandbox-preview__text" data-target-prop="textColor">
                 <span id="boxANDtext" class="badge"></span>
                 Drag a color from the palette onto any element to see it in action. This text, heading, buttons, and
@@ -147,7 +147,6 @@
       </section>
     </div>
     <div class="toast-container" id="toast-container"></div>
-
     <div class="export-panel" id="export-panel">
       <div class="export-panel__header">
         <h3 class="export-panel__title">CSS Variables</h3>
@@ -163,9 +162,7 @@
           .css</button>
       </div>
     </div>
-    <!-- Оверлей для затемнения фона -->
     <div class="overlay" id="overlay"></div>
-
   </main>
 
   <script type="module" defer>
@@ -173,6 +170,7 @@
     window.ColorThief = ColorThief;
   </script>
   <script type="module" src="/src/main.js" defer></script>
+
 </body>
 
 </html>

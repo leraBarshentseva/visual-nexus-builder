@@ -117,18 +117,15 @@ export function createElementColorBox(color) {
 
     const lockBloc = document.createElement('span');
     lockBloc.classList.add('palette-colors__lock');
-    lockBloc.title = "Закрепить цвет";
+    lockBloc.title = "Fix the color";
 
     const lockColor = getContrastTextColor(color);
     lockBloc.style.setProperty('--lock-color', lockColor);
 
     const hexCode = document.createElement('span');
     hexCode.classList.add('palette-colors__hex');
-    hexCode.title = "Нажмите, чтобы скопировать hex-код цвета";
+    hexCode.title = "click to copy the color hex code";
 
-    //hexCode.textContent = rgbToHex(color[0], color[1], color[2]);
-
-    const hexSpan = divColor.querySelector('.palette-colors__hex');
     const [r, g, b] = color;
 
     let colorString = '';
@@ -180,9 +177,8 @@ export function updateBaseColorUI(newBaseColorArray) {
 
 export function updateBadge(badgeElement, ratio) {
 
-    const isOk = ratio >= WCAG_AA_CONTRAST_RATIO; // Порог для AA
+    const isOk = ratio >= WCAG_AA_CONTRAST_RATIO;
 
-    // ${isOk ? '✅' : '❌'}
     badgeElement.textContent = `${ratio.toFixed(2)}:1`;
     badgeElement.style.backgroundColor = isOk ? '#28a745' : '#721c24';
     badgeElement.classList.add('is-visible');
@@ -193,18 +189,25 @@ export function updatePreviewImageUI() {
     if (state.previewImage) {
         const wrapper = document.querySelector('.palette-preview__image-wrapper');
         if (!wrapper) return;
-
         resetHTML(wrapper);
 
-        let imgElement = document.createElement('img');
+        const imgElement = createPreviewImageElement();
         imgElement.src = state.previewImage;
-        imgElement.crossOrigin = "anonymous";
-        imgElement.alt = "Предпросмотр загруженного изображения";
-        imgElement.classList.add('palette-preview__image');
+
         wrapper.append(imgElement);
 
         switchUploaderView('preview');
     }
+}
+
+export function createPreviewImageElement() {
+    
+    let imgElement = document.createElement('img');
+    imgElement.crossOrigin = "anonymous";
+    imgElement.alt = "Preview of the uploaded image";
+    imgElement.classList.add('palette-preview__image');
+
+    return imgElement;
 }
 
 export function switchUploaderView(viewToShow = '') {
@@ -216,7 +219,6 @@ export function switchUploaderView(viewToShow = '') {
         DOM.palettePreviewBox.classList.remove('is-active');
     }
 }
-
 
 export function applySandboxStyles(calculateContrast = true) {
     Object.keys(state.sandbox).forEach(prop => {

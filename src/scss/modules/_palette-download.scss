@@ -7,11 +7,11 @@
     margin: $margin-center;
     padding: $padding-box;
     border-radius: $border-radius-base;
-    background-color: $color-background-download;
     background-image: $color-background-download;
     box-shadow: $box-shadow-palette-download;
     @include uspoader-state;
     overflow: hidden;
+    max-height: $palette-download-size-h;
 
     &.drag-over {
         box-shadow: $box-shadow-drag-over;
@@ -28,9 +28,9 @@
 
     &__title {
         font-weight: $font-weight-base;
-        color: $color-text-placeholder;
+        color: lighten($color-text-placeholder, 30%);
         text-align: center;
-        font-size: $font-size-base;
+        font-size: $font-size-normal;
         margin: 0;
     }
 

@@ -1,5 +1,5 @@
 //palette-pilot\src\js\utils\dom.js
-// Элементы страницы
+
 export const DOM = {
   loader: document.querySelector('.palette-download__loader'),
   imageLoaderButton: document.querySelector('#image-loader-input'),
@@ -27,9 +27,9 @@ export const DOM = {
   exportPanelCopyBtn: document.querySelector('#export-panel-copy-btn'),
   overlay: document.querySelector('#overlay'),
   exportPanelDownloadBtn: document.querySelector('#export-panel-download-btn'),
+  resetSandboxBtn: document.querySelector('#reset-sandbox-btn'),
 }
 
-// Элементы песочницы контрастов
 const sandboxAll = document.querySelectorAll('.drop-target');
 export const sandbox = {};
 
@@ -38,7 +38,6 @@ sandboxAll.forEach(item => {
   sandbox[key] = item;
 });
 
-// Сравнение контраста для элементов
 export const contrastPairs = {
   titleANDpage: ['pageBackground', 'headingColor'],
   boxANDtext: ['boxBackground', 'textColor'],
@@ -51,7 +50,6 @@ export const contrastPairs = {
   buttonANDBox: ['buttonInsideBackground', 'boxBackground']
 };
 
-// Бэйджи
 export const badges = {
   titleANDpage: document.querySelector('#titleANDpage'),
   boxANDtext: document.querySelector('#boxANDtext'),
@@ -70,4 +68,12 @@ export function resetHTML(element) {
 
 export function doVisible(element, isVisibled = true) {
   isVisibled ? element.classList.add('is-visibled') : element.classList.remove('is-visibled');
+}
+
+export function toggleDragOver(element, isActive = false) {
+    if (isActive) {
+        element.classList.add('drag-over');
+    } else {
+        element.classList.remove('drag-over');
+    }
 }

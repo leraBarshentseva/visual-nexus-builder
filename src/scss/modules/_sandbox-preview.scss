@@ -53,6 +53,7 @@
         position: relative;
         display: inline-block;
         line-height: $line-height-max;
+        border: 1px dashed $color-border-dashed;
     }
 
     &__box {
@@ -90,4 +91,12 @@
             border-radius: $border-radius-small;
         }
     }
+}
+
+.sandbox__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: $margin-base;
 }

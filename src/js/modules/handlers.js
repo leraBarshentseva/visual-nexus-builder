@@ -26,7 +26,7 @@ import {
 
 import { deleteImageFromDB } from '../db.js';
 
-import { regeneratePalette, addFilePreview, downloadTextAsFile, generateShareableURL } from '../app.js';
+import { regeneratePalette, addFilePreview, downloadTextAsFile, generateShareableURL, resetSandbox } from '../app.js';
 
 
 export function initEventHandlers() {
@@ -71,7 +71,6 @@ export function initEventHandlers() {
         }
     });
 
-    // Загрузка изображения через кнопку
     DOM.imageLoaderButton.addEventListener('change', function (event) {
         event.preventDefault();
         doVisible(DOM.loader);
@@ -82,7 +81,6 @@ export function initEventHandlers() {
         renderPalette();
     });
 
-    // Копирование цвета || замочек на цвет (закрыть/открыть)
     DOM.paletteColorsBox.addEventListener('click', function (event) {
         const clickedElement = event.target;
         const parentColorItem = clickedElement.closest('.palette-colors__item');
@@ -139,7 +137,6 @@ export function initEventHandlers() {
         }
     });
 
-    //Выбрать другое изображение
     DOM.replaceImgBtn.addEventListener('click', function (e) {
         e.preventDefault();
         switchUploaderView();
@@ -147,14 +144,11 @@ export function initEventHandlers() {
         renderPalette();
     });
 
-    //Регенерация цветов
-    //по кнопке
     DOM.regenerateBtn.addEventListener('click', function (e) {
         e.preventDefault();
         regeneratePalette();
     });
 
-    //по пробелу
     document.addEventListener('keydown', function (e) {
         if (e.code === 'Space') {
             e.preventDefault();
@@ -171,5 +165,6 @@ export function initEventHandlers() {
         navigator.clipboard.writeText(shareURL);
         showToast("Link to share copied to clipboard!", "success");
     });
-}
 
+    DOM.resetSandboxBtn.addEventListener('click', resetSandbox);
+}

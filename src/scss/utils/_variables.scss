@@ -57,7 +57,7 @@ $color-yellow-300: #ffde7d;
 $gradient-logo: linear-gradient(45deg, #372d88, #ed76b4);
 $gradient-button-primary: linear-gradient(360deg, $color-lavender-500, #8598c5);
 $gradient-logo-text: linear-gradient(45deg, #372d88, #ed76b4);
-$gradient-block-download: linear-gradient(to bottom, #c6c6e5, #bbe9ef);
+$gradient-block-download: radial-gradient(rgb(199 103 171 / 0%), #83a7d969);
 
 //Semantic Color Tokens
 $color-action-primary: $color-purple-500;
@@ -189,20 +189,24 @@ $img-mh: 8rem;
 $img-mw-desktop: 10rem;
 $img-mh-desktop: 10rem;
 
-$sandbox-panel-width-desktop: 25rem;
 
-$palette-download-size-h: 70%;
+
+$palette-download-size-h: 12rem;
 $palette-download-size-w: 100%;
 $palette-item-height: 3rem;
 
+$app-panel-width-desktop: 25rem;
+$app-panel-width-min: 30rem;
+$app-panel-width-max: 60rem;
+$sandbox-box-width: 95%;
 $sandbox-header-height: 7em;
 $sandbox-logo-width: 4rem;
 $sandbox-logo-height: 4rem;
-$sandbox-content-height: 25em;
-$sandbox-box-width: 95%;
+$sandbox-content-height: 25rem;
 $sandbox-button-height: 3rem;
 $sandbox-button-width: 10rem;
 $sandbox-button-width--outside: 12rem;
+
 
 //Тени
 $text-shadow-on-brand: 0 0 0.1em rgba($color-black, 0.5);
@@ -211,7 +215,7 @@ $box-shadow-button: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -2px rgba(0, 0
 $box-shadow-toast: 0 4px 12px rgba(0, 0, 0, 0.15);
 $box-shadow-badge: 0 1px 3px rgba(0, 0, 0, 0.15);
 $box-shadow-export-panel: 0 -5px 25px rgb(132 153 197);
-$box-shadow-palette-download: 0 .1em 2em #dbdbfa87;
+$box-shadow-palette-download: inset 0 0.1em 2em rgb(134 181 230);
 $box-shadow-item: 0 1px 2px rgba(0, 0, 0, 0.04),
   0 2px 4px rgba(0, 0, 0, 0.04),
   0 4px 8px rgba(0, 0, 0, 0.04),

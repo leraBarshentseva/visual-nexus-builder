@@ -1,26 +1,10 @@
 import { API_COLOR_URL, colorCountGenerate } from './utils/constants.js';
-import {
-    rgbToHex,
-    findColorIndex
-} from './utils/colors.js';
-
+import { rgbToHex, findColorIndex } from './utils/colors.js';
 import { state } from './modules/state.js';
-import {
-    saveStateToLocalStorage,
-    encondePaletteForUrl,
-    encodeSandboxForURL
-} from './modules/storage.js';
-
-import {
-    renderPalette,
-    switchUploaderView,
-    showToast
-} from './modules/ui.js';
-
+import { saveStateToLocalStorage, encondePaletteForUrl, encodeSandboxForURL } from './modules/storage.js';
+import { renderPalette, switchUploaderView, showToast, applySandboxStyles, createPreviewImageElement } from './modules/ui.js';
 import { saveImageToDB } from './db.js';
-
 import { resetHTML, doVisible, DOM } from './utils/dom.js';
-
 import { modeGeneration } from './utils/constants.js';
 
 export async function regeneratePalette() {
@@ -38,7 +22,7 @@ export async function regeneratePalette() {
     });
 
     if (unlockedIndexes.length === 0) {
-        alert('Все цвета закреплены. Нечего регенерировать.');
+        showToast('All colors are fixed. Nothing to regenerate.');
         return;
     }
 
@@ -91,14 +75,14 @@ export async function getColorsPaletteAPI(url) {
             }
         });
         if (!response.ok) {
-            throw new Error(`Ошибка сервера: ${response.status}`);
+            throw new Error(`Server error: ${response.status}`);
         }
 
         const dataColors = await response.json();
         return dataColors;
 
     } catch (error) {
-        console.error('Возникла ошибка во время запроса:', error);
+        console.error('An error occurred while processing your request:', error);
         return null;
     }
 }
@@ -119,10 +103,7 @@ export function addFilePreview(files) {
     if (!wrapper) return;
     resetHTML(wrapper);
 
-    const imgElement = document.createElement('img');
-    imgElement.crossOrigin = "anonymous";
-    imgElement.alt = "Предпросмотр загруженного изображения";
-    imgElement.classList.add('palette-preview__image');
+    const imgElement = createPreviewImageElement();
 
     imgElement.addEventListener('load', function () {
         const colorThief = new window.ColorThief();
@@ -228,4 +209,23 @@ export function generateShareableURL() {
 
     const shareableURL = `${location.origin}${window.location.pathname}?${params.toString()}`;
     return shareableURL;
+}
+
+export function resetSandbox() {
+    state.sandbox = {
+        boxBackground: [255, 255, 255],
+        buttonInsideBackground: [255, 255, 255],
+        buttonInsideTextColor: [0, 0, 0],
+        buttonOutsideBackground: [255, 255, 255],
+        buttonOutsideTextColor: [0, 0, 0],
+        headerBackground: [255, 255, 255],
+        headingColor: [0, 0, 0],
+        linkColor: [0, 0, 0],
+        linkColorPrime: [0, 0, 0],
+        pageBackground: [255, 255, 255],
+        textColor: [0, 0, 0],
+    };
+
+    applySandboxStyles(false);
+    saveStateToLocalStorage();
 }

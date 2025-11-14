@@ -41,4 +41,11 @@
             color: $color-text-on-brand;
         }
     }
+
+    &--small {
+        padding: $padding-smal;
+        font-size: $font-size-normal;
+        height: auto;
+        width: auto;
+    }
 }
