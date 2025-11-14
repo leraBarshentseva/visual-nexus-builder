@@ -16,7 +16,6 @@
     }
 
     &__logo {
-        width: calc($logo-width * 2);
         @include flex-center-column;
 
         @include media(md) {
