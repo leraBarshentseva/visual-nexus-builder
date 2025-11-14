@@ -31,6 +31,8 @@
         border: 2px dashed transparent;
         transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
         padding: $padding-palette-item;
+        border: 1px solid $color-border-dashed;
+        overflow: hidden;
 
         &.drag-hide {
             position: absolute !important;
@@ -124,7 +126,6 @@
         font-size: $font-size-smal;
         background-color: $color-background-interactive;
         padding: $padding-base-label;
-        border-top-left-radius: $border-radius-small;
         color: $color-text-on-brand;
         opacity: 0;
     }
