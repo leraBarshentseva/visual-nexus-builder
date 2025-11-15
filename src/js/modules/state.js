@@ -6,6 +6,7 @@ export let state = {
     baseColor: null,
     previewImage: null,
     displayFormat: 'HEX',
+    activeColor: null,
     loadingColorIndexes: [], //An array of indexes that are currently being loaded
     utilityColors: [
         [0, 0, 0],

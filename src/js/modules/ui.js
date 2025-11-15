@@ -201,7 +201,7 @@ export function updatePreviewImageUI() {
 }
 
 export function createPreviewImageElement() {
-    
+
     let imgElement = document.createElement('img');
     imgElement.crossOrigin = "anonymous";
     imgElement.alt = "Preview of the uploaded image";
@@ -301,4 +301,18 @@ export function updateFormatSwitcherUI() {
     if (selectedInput) {
         selectedInput.checked = true;
     }
+}
+
+export function activatePaintMode(color) {
+    state.activeColor = color;
+    DOM.eyedropperColor.style.fill = color;
+    DOM.eyedropperColor.style.stroke = color;
+    DOM.paintBrushIndicator.classList.add('is-active');
+}
+
+export function deactivatePaintMode() {
+    state.activeColor = null;
+    DOM.eyedropperColor.style.fill = ''; 
+    DOM.eyedropperColor.style.stroke = '';
+    DOM.paintBrushIndicator.classList.remove('is-active');
 }

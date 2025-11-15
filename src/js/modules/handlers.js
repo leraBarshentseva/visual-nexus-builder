@@ -22,69 +22,19 @@ import {
     showToast,
     openExportPanel,
     closeExportPanel,
+    activatePaintMode,
+    deactivatePaintMode
 } from './ui.js';
-
+import { isMobile } from '../utils/constants.js';
 import { deleteImageFromDB } from '../db.js';
-
 import { regeneratePalette, addFilePreview, downloadTextAsFile, generateShareableURL, resetSandbox } from '../app.js';
 
 
 export function initEventHandlers() {
 
-    DOM.exportCssBtn.addEventListener('click', openExportPanel);
-    DOM.exportPanelCloseBtn.addEventListener('click', closeExportPanel);
-    DOM.overlay.addEventListener('click', closeExportPanel);
-
-    DOM.exportPanelCopyBtn.addEventListener('click', () => {
-        const codeToCopy = DOM.exportCodeContent.textContent;
-        navigator.clipboard.writeText(codeToCopy);
-        showToast('CSS variables copied!', 'success');
-    });
-
-    DOM.exportPanelDownloadBtn.addEventListener('click', () => {
-        const codeToDownload = DOM.exportCodeContent.textContent;
-        downloadTextAsFile('visual-nexus-builder.css', codeToDownload);
-        showToast('Downloading palette-pilot.css...', 'success');
-    });
-
-    DOM.formatSwitcher.addEventListener('change', (event) => {
-        state.displayFormat = event.target.value;
-
-        renderPalette();
-        renderUtilityColors();
-
-        saveStateToLocalStorage();
-    });
-
-    DOM.resetBtn.addEventListener('click', function () {
-        if (confirm('Are you sure you want to reset everything? This cannot be undone.')) {
-            resetState();
-            clearLocalStorage();
-            resetStateFromURL();
-            deleteImageFromDB();
-
-            renderPalette();
-            applySandboxStyles(false);
-            switchUploaderView();
-            const wrapper = document.querySelector('.palette-preview__image-wrapper');
-            if (wrapper) resetHTML(wrapper);
-        }
-    });
-
-    DOM.imageLoaderButton.addEventListener('change', function (event) {
-        event.preventDefault();
-        doVisible(DOM.loader);
-        setTimeout(() => {
-            const files = event.target.files;
-            addFilePreview(files);
-        }, 1000);
-        renderPalette();
-    });
-
-    DOM.paletteColorsBox.addEventListener('click', function (event) {
+    const onPaletteClick = (event) => {
         const clickedElement = event.target;
         const parentColorItem = clickedElement.closest('.palette-colors__item');
-
         if (!parentColorItem) return;
 
         const colorArray = rgbStringToArray(parentColorItem.style.backgroundColor);
@@ -95,8 +45,7 @@ export function initEventHandlers() {
             showToast(`'${hexToCopy}' copied to clipboard!`, 'success');
             return;
 
-        }
-        else if (clickedElement.classList.contains("palette-colors__lock")) {
+        } else if (clickedElement.classList.contains("palette-colors__lock")) {
             const colorIndex = findColorIndex(state.lockedColors, colorArray);
             const isLocked = colorIndex > -1;
 
@@ -125,16 +74,68 @@ export function initEventHandlers() {
                 clickedElement.title = "Закрепить цвет";
                 saveStateToLocalStorage();
             }
-
             return;
-        }
 
-        else if (parentColorItem.querySelector('.palette-colors__lock--locked')) {
+        } else if (parentColorItem.querySelector('.palette-colors__lock--locked')) {
             if (findColorIndex([state.baseColor], colorArray) === -1) {
                 state.baseColor = colorArray;
                 updateBaseColorUI(state.baseColor);
             }
         }
+
+        if (isMobile) {
+            activatePaintMode(clickedElement.style.backgroundColor);
+        }
+    };
+
+    DOM.paletteColorsBox.addEventListener('click', onPaletteClick);
+    DOM.utilityBox.addEventListener('click', onPaletteClick);
+    DOM.resetSandboxBtn.addEventListener('click', resetSandbox);
+    DOM.exportCssBtn.addEventListener('click', openExportPanel);
+    DOM.exportPanelCloseBtn.addEventListener('click', closeExportPanel);
+    DOM.overlay.addEventListener('click', closeExportPanel);
+
+    DOM.exportPanelCopyBtn.addEventListener('click', () => {
+        const codeToCopy = DOM.exportCodeContent.textContent;
+        navigator.clipboard.writeText(codeToCopy);
+        showToast('CSS variables copied!', 'success');
+    });
+
+    DOM.exportPanelDownloadBtn.addEventListener('click', () => {
+        const codeToDownload = DOM.exportCodeContent.textContent;
+        downloadTextAsFile('visual-nexus-builder.css', codeToDownload);
+        showToast('Downloading palette-pilot.css...', 'success');
+    });
+
+    DOM.formatSwitcher.addEventListener('change', (event) => {
+        state.displayFormat = event.target.value;
+        renderPalette();
+        renderUtilityColors();
+        saveStateToLocalStorage();
+    });
+
+    DOM.resetBtn.addEventListener('click', function () {
+        if (confirm('Are you sure you want to reset everything? This cannot be undone.')) {
+            resetState();
+            clearLocalStorage();
+            resetStateFromURL();
+            deleteImageFromDB();
+            renderPalette();
+            applySandboxStyles(false);
+            switchUploaderView();
+            const wrapper = document.querySelector('.palette-preview__image-wrapper');
+            if (wrapper) resetHTML(wrapper);
+        }
+    });
+
+    DOM.imageLoaderButton.addEventListener('change', function (event) {
+        event.preventDefault();
+        doVisible(DOM.loader);
+        setTimeout(() => {
+            const files = event.target.files;
+            addFilePreview(files);
+        }, 1000);
+        renderPalette();
     });
 
     DOM.replaceImgBtn.addEventListener('click', function (e) {
@@ -166,5 +167,24 @@ export function initEventHandlers() {
         showToast("Link to share copied to clipboard!", "success");
     });
 
-    DOM.resetSandboxBtn.addEventListener('click', resetSandbox);
+    if (isMobile) {
+        const handleSandboxClick = (event) => {
+            if (!state.activeColor) return;
+
+            const dropZone = event.target.closest('.drop-target');
+            if (!dropZone) return;
+
+            event.preventDefault();
+
+            const prop = dropZone.dataset.targetProp;
+            const colorArray = rgbStringToArray(state.activeColor);
+            state.sandbox[prop] = colorArray;
+            applySandboxStyles(true);
+            saveStateToLocalStorage();
+            deactivatePaintMode();
+        }
+
+        DOM.contrastSandbox.addEventListener('click', handleSandboxClick);
+        DOM.paintBrushReset.addEventListener('click', deactivatePaintMode);
+    }
 }

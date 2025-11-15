@@ -1,6 +1,6 @@
 //palette-pilot\src\js\modules\dnd.js
 import Sortable from 'sortablejs';
-
+import { isMobile } from '../utils/constants.js';
 import { DOM, doVisible, toggleDragOver } from '../utils/dom.js';
 import { rgbStringToArray } from '../utils/colors.js';
 import { state } from './state.js';
@@ -20,55 +20,40 @@ export function initDragAndDrop() {
         }
     });
 
-    let draggedColor = null; //brush with paint
+    if (!isMobile) {
+        const onDragStart = (event) => {
 
-    const onPointerDown = (event) => {
-        const target = event.target.closest('.palette-colors__item');
-        if (!target || target.classList.contains('is-empty')) return;
-
-        draggedColor = target.style.backgroundColor;
-
-        if (event.type === 'dragstart') {
-            event.dataTransfer.setData('text/plain', draggedColor);
+            const target = event.target.closest('.palette-colors__item');
+            if (!target || target.classList.contains('is-empty')) return;
+            
+            event.dataTransfer.setData('text/plain', target.style.backgroundColor);
             event.dataTransfer.effectAllowed = 'copy';
-        }
-    };
+        };
 
-    const onPointerUp = () => {
-        draggedColor = null;
-    };
+        DOM.paletteColorsBox.addEventListener('dragstart', onDragStart);
+        DOM.utilityBox.addEventListener('dragstart', onDragStart);
 
-    DOM.paletteColorsBox.addEventListener('dragstart', onPointerDown);
-    DOM.utilityBox.addEventListener('dragstart', onPointerDown);
+        DOM.contrastSandbox.addEventListener('dragover', (e) => e.preventDefault());
+        DOM.contrastSandbox.addEventListener('drop', (e) => {
+            e.preventDefault();
+            const colorString = e.dataTransfer.getData('text/plain');
+            if (!colorString) return;
 
-    DOM.paletteColorsBox.addEventListener('touchstart', onPointerDown, { passive: true });
-    DOM.utilityBox.addEventListener('touchstart', onPointerDown, { passive: true });
+            const dropZone = e.target.closest('.drop-target');
+            if (!dropZone) return;
 
-    const onDropInSandbox = (event, clientX, clientY) => {
-        if (!draggedColor) return;
-        event.preventDefault();
+            const prop = dropZone.dataset.targetProp;
+            if (!prop) return;
 
-        const dropZone = document.elementFromPoint(clientX, clientY).closest('.drop-target');
-        if (!dropZone || !dropZone.closest('#contrast-sandbox')) return;
+            const colorArray = rgbStringToArray(colorString);
+            if (!colorArray) return;
 
-        const prop = dropZone.dataset.targetProp;
-        if (!prop) return;
-
-        const colorArray = rgbStringToArray(draggedColor);
-        if (!colorArray) return;
-
-        state.sandbox[prop] = colorArray;
-        applySandboxStyles(true);
-        saveStateToLocalStorage();
-    };
-
-    DOM.contrastSandbox.addEventListener('dragover', e => e.preventDefault());
-    DOM.contrastSandbox.addEventListener('drop', e => onDropInSandbox(e, e.clientX, e.clientY));
-
-    document.addEventListener('touchend', e => onDropInSandbox(e, e.changedTouches[0].clientX, e.changedTouches[0].clientY));
-
-    document.addEventListener('mouseup', onPointerUp);
-    document.addEventListener('dragend', onPointerUp);
+            state.sandbox[prop] = colorArray;
+            applySandboxStyles(true);
+            saveStateToLocalStorage();
+            saveStateToURL();
+        });
+    }
 
     ['dragenter', 'dragover'].forEach(eventName => {
         DOM.paletteDownload.addEventListener(eventName, (event) => {

@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Palette-Pilot</title>
+  <title>Visual nexus builder</title>
   <link rel="icon" href="public/image/favicon-32x32.png" sizes="32x32" type="image/png">
 </head>
 
@@ -163,6 +163,17 @@
       </div>
     </div>
     <div class="overlay" id="overlay"></div>
+
+    <div class="paint-brush-indicator" id="paint-brush-indicator">
+      <svg class="eyedropper-icon" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+        xmlns="http://www.w3.org/2000/svg">
+        <path class="eyedropper__color" stroke-linecap="round" stroke-linejoin="round"
+          d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Z" />
+        <path class="eyedropper__body" stroke-linecap="round" stroke-linejoin="round"
+          d="m9.53 16.122a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42" />
+      </svg>
+      <button class="paint-brush-indicator__reset" id="paint-brush-reset">&times;</button>
+    </div>
   </main>
 
   <script type="module" defer>

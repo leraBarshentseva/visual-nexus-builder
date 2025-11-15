@@ -28,6 +28,11 @@ export const DOM = {
   overlay: document.querySelector('#overlay'),
   exportPanelDownloadBtn: document.querySelector('#export-panel-download-btn'),
   resetSandboxBtn: document.querySelector('#reset-sandbox-btn'),
+
+  paintBrushIndicator: document.querySelector('#paint-brush-indicator'),
+  paintBrushPreview: document.querySelector('#paint-brush-preview'),
+  eyedropperColor: document.querySelector('.eyedropper__color'),
+  paintBrushReset: document.querySelector('#paint-brush-reset'),
 }
 
 const sandboxAll = document.querySelectorAll('.drop-target');
@@ -71,9 +76,9 @@ export function doVisible(element, isVisibled = true) {
 }
 
 export function toggleDragOver(element, isActive = false) {
-    if (isActive) {
-        element.classList.add('drag-over');
-    } else {
-        element.classList.remove('drag-over');
-    }
+  if (isActive) {
+    element.classList.add('drag-over');
+  } else {
+    element.classList.remove('drag-over');
+  }
 }
