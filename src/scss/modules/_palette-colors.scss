@@ -21,7 +21,6 @@
 
     &__item {
         position: relative;
-        cursor: grab;
         @include flex-center-column;
         border-radius: $border-radius-small;
         text-align: center;
@@ -72,10 +71,9 @@
         }
 
         &:hover {
-            transform: translateY(-5px) scale(1.03);
+            transform: translateY(-1px) scale(1.1);
             box-shadow: $box-shadow-item;
         }
-
 
         &--dragging {
             cursor: grabbing;
@@ -128,6 +126,26 @@
         padding: $padding-base-label;
         color: $color-text-on-brand;
         opacity: 0;
+    }
+
+    &__handle {
+        position: absolute;
+        left: .5rem;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1rem;
+        height: 1rem;
+        cursor: grab;
+        color: $color-handle;
+    }
+
+    &.dragging &__item:not(.sortable-drag):hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    &__hex:hover {
+        cursor: pointer;
     }
 }
 

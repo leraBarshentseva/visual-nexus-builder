@@ -13,7 +13,10 @@ export function initDragAndDrop() {
     new Sortable(DOM.paletteColorsBox, {
         animation: 150,
         ghostClass: 'is-empty',
+        handle: '.palette-colors__handle',
+        onStart: () => DOM.paletteColorsBox.classList.add('dragging'),
         onEnd: (evt) => {
+            DOM.paletteColorsBox.classList.remove('dragging');
             if (evt.oldIndex !== evt.newIndex) {
                 handlePaletteSort(evt.oldIndex, evt.newIndex);
             }
@@ -25,7 +28,7 @@ export function initDragAndDrop() {
 
             const target = event.target.closest('.palette-colors__item');
             if (!target || target.classList.contains('is-empty')) return;
-            
+
             event.dataTransfer.setData('text/plain', target.style.backgroundColor);
             event.dataTransfer.effectAllowed = 'copy';
         };

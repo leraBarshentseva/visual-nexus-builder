@@ -1,5 +1,5 @@
 //palette-pilot\src\js\modules\handlers.js
-import { colorCountGenerate, WCAG_AA_CONTRAST_RATIO } from '../utils/constants.js';
+import { colorCountGenerate, WCAG_AA_CONTRAST_RATIO, handle_svg } from '../utils/constants.js';
 import { DOM, sandbox, contrastPairs, badges, resetHTML } from '../utils/dom.js';
 import {
     rgbToHex,
@@ -152,9 +152,14 @@ export function createElementColorBox(color) {
     baseLabel.classList.add('palette-colors__base-label');
     baseLabel.textContent = 'base color';
 
+    const handle = document.createElement('span');
+    handle.classList.add('palette-colors__handle');
+    handle.innerHTML = handle_svg;
+
     divColor.append(lockBloc);
     divColor.append(hexCode);
     divColor.append(baseLabel);
+    divColor.append(handle);
 
     return divColor;
 }
@@ -306,13 +311,11 @@ export function updateFormatSwitcherUI() {
 export function activatePaintMode(color) {
     state.activeColor = color;
     DOM.eyedropperColor.style.fill = color;
-    DOM.eyedropperColor.style.stroke = color;
     DOM.paintBrushIndicator.classList.add('is-active');
 }
 
 export function deactivatePaintMode() {
     state.activeColor = null;
-    DOM.eyedropperColor.style.fill = ''; 
-    DOM.eyedropperColor.style.stroke = '';
+    DOM.eyedropperColor.style.fill = '';
     DOM.paintBrushIndicator.classList.remove('is-active');
 }
