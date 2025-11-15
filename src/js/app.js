@@ -5,7 +5,6 @@ import { saveStateToLocalStorage, encondePaletteForUrl, encodeSandboxForURL } fr
 import { renderPalette, switchUploaderView, showToast, applySandboxStyles, createPreviewImageElement } from './modules/ui.js';
 import { saveImageToDB } from './db.js';
 import { resetHTML, doVisible, DOM } from './utils/dom.js';
-import { modeGeneration } from './utils/constants.js';
 
 export async function regeneratePalette() {
     if (state.baseColor === null) {
@@ -32,9 +31,8 @@ export async function regeneratePalette() {
     const baseColorArray = state.baseColor;
     const hexWithHash = rgbToHex(baseColorArray[0], baseColorArray[1], baseColorArray[2]);
     const hexForApi = hexWithHash.slice(1);
-    const countToGenerate = unlockedIndexes.length;
+    const countToGenerate = unlockedIndexes.length * 2;
 
-    const mode = modeGeneration;
     const selectedMode = DOM.modeSelect.value;
 
     const url = new URL(API_COLOR_URL);
@@ -49,11 +47,22 @@ export async function regeneratePalette() {
         return;
     }
 
-    const newColors = dataColorsPalette.colors.map(color => [color.rgb.r, color.rgb.g, color.rgb.b]);
+    const newColorsFromAPI = dataColorsPalette.colors.map(color => [color.rgb.r, color.rgb.g, color.rgb.b]);
+
+    const uniqueNewColors = newColorsFromAPI.filter(newColor => {
+        return findColorIndex(state.palette, newColor) === -1;
+    });
+
+    if (uniqueNewColors.length === 0) {
+        state.loadingColorIndexes = [];
+        renderPalette();
+        showToast("Generated colors are already in the palette.", "info");
+        return;
+    }
 
     unlockedIndexes.forEach((paletteIndex, i) => {
-        if (newColors[i]) {
-            state.palette[paletteIndex] = newColors[i];
+        if (uniqueNewColors[i]) {
+            state.palette[paletteIndex] = uniqueNewColors[i];
         }
     });
 
@@ -61,8 +70,6 @@ export async function regeneratePalette() {
 
     renderPalette();
     saveStateToLocalStorage();
-
-    doVisible(DOM.loader, false);
 }
 
 export async function getColorsPaletteAPI(url) {

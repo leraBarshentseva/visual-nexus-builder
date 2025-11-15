@@ -19,7 +19,7 @@
 }
 
 @mixin app-action-lg {
-    max-width: calc(50% - 1rem);
+    max-width: calc(50% - .5rem);
     margin-left: auto;
 }
 
