@@ -29,7 +29,9 @@ export function initDragAndDrop() {
             const target = event.target.closest('.palette-colors__item');
             if (!target || target.classList.contains('is-empty')) return;
 
-            event.dataTransfer.setData('text/plain', target.style.backgroundColor);
+            const color = target.style.backgroundColor || getComputedStyle(item).backgroundColor;
+            event.dataTransfer.clearData('application/x-palette-color');
+            event.dataTransfer.setData('application/x-palette-color', color);
             event.dataTransfer.effectAllowed = 'copy';
         };
 
@@ -39,7 +41,8 @@ export function initDragAndDrop() {
         DOM.contrastSandbox.addEventListener('dragover', (e) => e.preventDefault());
         DOM.contrastSandbox.addEventListener('drop', (e) => {
             e.preventDefault();
-            const colorString = e.dataTransfer.getData('text/plain');
+            
+            const colorString = e.dataTransfer.getData('application/x-palette-color');
             if (!colorString) return;
 
             const dropZone = e.target.closest('.drop-target');
