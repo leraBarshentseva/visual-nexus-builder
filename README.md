@@ -27,7 +27,7 @@ The project is built on vanilla JavaScript, SCSS, and standard browser APIs. The
 
 ### 🎬 Demo
 
-**[Try it Live!](https://vnb-app.netlify.app/)**
+[![Try it Live](https://img.shields.io/badge/Live_Demo-Open-brightgreen?style=for-the-badge&logo=netlify)](https://vnb-app.netlify.app/)
 
 <p align="center"><img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/PC.gif" alt="Visual Nexus Builder Demo" width="80%"></p>
 
@@ -106,7 +106,7 @@ Want to run the project locally? It's simple!
 
 ### 🎬 Демонстрация
 
-**[Попробовать вживую!](https://vnb-app.netlify.app/)**
+[![Попробовать вживую](https://img.shields.io/badge/Live_Demo-Open-brightgreen?style=for-the-badge&logo=netlify)](https://vnb-app.netlify.app/)
 
 <p align="center"><img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/PC.gif" alt="Gif, демонстрирующее работу приложения" width="80%"></p>
 
