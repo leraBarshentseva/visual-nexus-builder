@@ -54,7 +54,6 @@ export function initDragAndDrop() {
             state.sandbox[prop] = colorArray;
             applySandboxStyles(true);
             saveStateToLocalStorage();
-            saveStateToURL();
         });
     }
 
