@@ -29,10 +29,10 @@ The project is built on vanilla JavaScript, SCSS, and standard browser APIs. The
 
 **[Try it Live!](https://vnb-app.netlify.app/)**
 
-![A GIF showcasing the application's functionality](https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/PC.gif)
+<p align="center"><img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/PC.gif" alt="Visual Nexus Builder Demo" width="80%"></p>
 
-| **Mobile Demo (Phone)** | *See the brush mode in action on mobile!* <br><br>|
-<img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/phone.gif" width="300" alt="A GIF showcasing the application's functionality on mobile">
+| **Mobile Demo (Phone)** | *See the brush mode in action on mobile!* |<br>
+<p align="center"><img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/phone.gif" width="300" alt="A GIF showcasing the application's functionality on mobile"></p>
 
 ### 🛠️ Tech Stack
 
@@ -108,10 +108,10 @@ Want to run the project locally? It's simple!
 
 **[Попробовать вживую!](https://vnb-app.netlify.app/)**
 
-![Gif, демонстрирующее работу приложения](https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/PC.gif)
+<p align="center"><img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/PC.gif" alt="Gif, демонстрирующее работу приложения" width="80%"></p>
 
-| **Демонстрация работы VNB на телефоне** | *Посмотрите режим работы кисти в действии на мобильном устройстве!* <br><br>|
-<img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/phone.gif" width="300" alt="A GIF showcasing the application's functionality on mobile">
+| **Демонстрация работы VNB на телефоне** | *Посмотрите режим работы кисти в действии на мобильном устройстве!* | <br>
+<p align="center"><img src="https://github.com/leraBarshentseva/visual-nexus-builder/blob/main/public/gif/phone.gif" width="300" alt="A GIF showcasing the application's functionality on mobile"></p>
 ### 🛠️ Стек технологий
 
 *   **JavaScript**: Нативный JS (ES modules, async/await).
