@@ -1,7 +1,7 @@
 ### 🌐 Language Switcher
 
-[🇬🇧/🇺🇸 Read in English](#-english-version)  
-[🇷🇺 Читать на русском](#-russian-version)
+[🇬🇧/🇺🇸 Read in English](#english-version)  
+[🇷🇺 Читать на русском](#russian-version)
 
 ---
 
